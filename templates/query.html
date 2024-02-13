@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-button {
+            background-color: #4caf50;
+            color: white;
+            border: 2px solid #4caf50;
+            border-radius: 0 5px 5px 0;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Adjusted to move links to the left */
+            background-color: #eee;
+            padding: 10px;
+            width: 100%;
+            margin-left: 50px;
+        }
+
+
+    </style>
+    <title>Search Page with Links</title>
+</head>
+<body>
+    <div class="search-container">
+        <form action="/search" method="get">
+            <input type="text" class="search-input" name="query" placeholder="Enter your search" >
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+    <nav>
+        <p>Returned {{ number }} result(s) in {{ time }} second's</p>
+        {% for result in results %}
+            <h2><a href="{{ result['link'] }}">{{ result['title'] }}</a></h2>
+            {% if result['desc'] %}
+            <p>{{ result['desc'] }}...</p>
+            {% else %}
+            <i>No description available</i>
+            {% endif %}
+
+        {% endfor %}
+
+    </nav>
+
+    <!-- The rest of your page content goes here -->
+
+</body>
+</html>
